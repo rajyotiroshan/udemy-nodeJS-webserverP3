@@ -1,13 +1,12 @@
+const path = require("path");
 const express = require('express');//return a function.
-
+console.log(__dirname);
+console.log(path.join(__dirname,"../public"));
 
 const app = express();//takes no argument.
+const publicDirectory = path.join(__dirname, "../public");
+app.use(express.static(publicDirectory));
 
-//set up server.
-//send back html as response.
-app.get('/', (req, res)=> {//app.com
-    res.send("<h1>Weather</h1>");//send res back to userAgent.
-});//takes two args.
 
 app.get('/help',(req, res)=>{///help
     //array of obj or obj as a reponse.
