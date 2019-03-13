@@ -35,12 +35,20 @@ app.get('/about',(req,res)=>{///about
     });
 }); 
 
+app.get('/help',(req, res)=>{
+    res.render('help',{
+        message: 'You contact us at 8678091410'
+    });
+})
+
 app.get('/weather',(req,res)=>{///weather
     res.send({
         location: "new Delhi",
         forecast: "It is showing"
     });
 });
+
+
 
 //start server up.
 app.listen(3000, ()=>{
