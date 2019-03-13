@@ -1,5 +1,6 @@
 const path = require("path");
 const express = require('express');//return a function.
+const hbs = require('hbs');
 //console.log(__dirname);
 //console.log(path.join(__dirname,"../public"));
 const app = express();//takes no argument.
@@ -9,7 +10,7 @@ const app = express();//takes no argument.
  */
 const publicDirectory = path.join(__dirname, "../public");
 //customize views directory.
-const viewsPath = path.join(__dirname, '../template');
+const viewsPath = path.join(__dirname, '../template/views');
 
 /**
  *   Setup handlebars engine and views location.
