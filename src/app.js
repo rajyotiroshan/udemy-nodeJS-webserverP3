@@ -37,7 +37,7 @@ app.get('/about',(req,res)=>{///about
 
 app.get('/help',(req, res)=>{
     res.render('help',{
-        message: 'You contact us at 8678091410'
+        message: 'You can contact us at 8678091410'
     });
 })
 
