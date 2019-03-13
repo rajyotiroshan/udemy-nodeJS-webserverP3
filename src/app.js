@@ -1,12 +1,25 @@
 const path = require("path");
 const express = require('express');//return a function.
-console.log(__dirname);
-console.log(path.join(__dirname,"../public"));
-
+//console.log(__dirname);
+//console.log(path.join(__dirname,"../public"));
 const app = express();//takes no argument.
+
+/**
+ * Define path for Express Config. 
+ */
 const publicDirectory = path.join(__dirname, "../public");
+//customize views directory.
+const viewsPath = path.join(__dirname, '../template');
+
+/**
+ *   Setup handlebars engine and views location.
+ */
 //tell express which templating engine is being used or installed.
 app.set('view engine','hbs');
+//tell express to use above path for views.
+app.set('views',viewsPath);
+
+//Setup static dir to serve.
 app.use(express.static(publicDirectory));
 
 app.get('',(req, res)=> {
