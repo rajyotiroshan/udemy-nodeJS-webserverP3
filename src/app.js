@@ -5,9 +5,13 @@ console.log(path.join(__dirname,"../public"));
 
 const app = express();//takes no argument.
 const publicDirectory = path.join(__dirname, "../public");
-
+//tell express which templating engine is being used or installed.
+app.set('view engine','hbs');
 app.use(express.static(publicDirectory));
 
+app.get('',(req, res)=> {
+    res.render('index');
+});
 
 
 
