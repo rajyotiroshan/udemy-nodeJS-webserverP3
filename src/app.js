@@ -10,7 +10,10 @@ app.set('view engine','hbs');
 app.use(express.static(publicDirectory));
 
 app.get('',(req, res)=> {
-    res.render('index');
+    res.render('index', {
+        title: 'Weather',
+        name: 'Rajan jha'
+    });
 });
 
 
@@ -24,10 +27,13 @@ app.get('',(req, res)=> {
         name: "rajan", age: 27
     }]);
 });
-
+*/
 app.get('/about',(req,res)=>{///about
-    res.send("<h1>About</h1>");
-}); */
+    res.render('about', {
+        title: 'About Me',
+        name: 'Rajan jha'
+    });
+}); 
 
 app.get('/weather',(req,res)=>{///weather
     res.send({
