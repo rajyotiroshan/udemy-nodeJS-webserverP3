@@ -1,12 +1,22 @@
 const path = require("path");
 const express = require('express');//return a function.
-console.log(__dirname);
-console.log(path.join(__dirname,"../public"));
+const hbs = require('hbs');
 
 const app = express();//takes no argument.
+
+
+//Define path for express config.
 const publicDirectory = path.join(__dirname, "../public");
+const viewsPath = path.join(__dirname, '../templates/views');
+const partialsPath = path.join(__dirname, '../templates/partials')
+
 //tell express which templating engine is being used or installed.
+//Setup handlebars engine and views locations.
 app.set('view engine','hbs');
+app.set('views', viewsPath);
+hbs.registerPartials(partialsPath);
+
+//Setup static directory to serve.
 app.use(express.static(publicDirectory));
 
 app.get('',(req, res)=> {
@@ -37,7 +47,9 @@ app.get('/about',(req,res)=>{///about
 
 app.get('/help',(req, res)=>{
     res.render('help',{
-        message: 'You can contact us at 8678091410'
+        helpText: 'You can contact us at 8678091410',
+        title:'Help',
+        name:'Rajan Jha'
     });
 })
 
