@@ -53,12 +53,33 @@ app.get('/help',(req, res)=>{
     });
 })
 
+//
+/* app.get('/products',(req,res)=>{
+    if(!req.query.search){//no search term
+       return res.send({
+            error:'No search term'
+        });
+    }
+    console.log(req.query.search);
+    res.send({
+        products: []
+    });
+}); */
+
 app.get('/weather',(req,res)=>{///weather
+    if(!req.query.address) {//no address is provided.
+        return res.send({
+            error:'No Address is provided.'
+        });
+    }
     res.send({
         location: "new Delhi",
-        forecast: "It is showing"
+        forecast: "It is showing",
+        address:   req.query.address
     });
 });
+
+
 
 //anypage that hasn't been match before with url /help/
 app.get('/help/*', (req,res)=>{
