@@ -60,6 +60,22 @@ app.get('/weather',(req,res)=>{///weather
     });
 });
 
+//anypage that hasn't been match before with url /help/
+app.get('/help/*', (req,res)=>{
+    res.render('404', {
+        title:'404',
+        errorText:'This help document is not available.'
+    });
+});
+
+//return response for non-existing url.
+//match anything that has not been matched before.
+app.get('*', (req, res)=> {
+    res.render('404', {
+        title:'404',
+        errorText:'This page is not available',
+    });
+});
 
 
 //start server up.
