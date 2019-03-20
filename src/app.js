@@ -2,6 +2,9 @@ const path = require("path");
 const express = require('express');//return a function.
 const hbs = require('hbs');
 
+const request = require('request');
+const forecast = require('./utils/forecast');
+const geocode = require('./utils/geocode');
 const app = express();//takes no argument.
 
 
@@ -72,10 +75,24 @@ app.get('/weather',(req,res)=>{///weather
             error:'No Address is provided.'
         });
     }
-    res.send({
-        location: "new Delhi",
-        forecast: "It is showing",
-        address:   req.query.address
+    
+    //request for forecast data.
+    geocode(req.query.address, (error,response)=>{
+        if(error){
+            res.send({
+                error
+            });
+        }else {
+            forecast(response.latitude, response.longitude,(error,response)=>{
+                if(error){
+                    res.send({
+                        error
+                    });
+                }else {
+                    res.send({response});
+                }
+            });
+        }
     });
 });
 
