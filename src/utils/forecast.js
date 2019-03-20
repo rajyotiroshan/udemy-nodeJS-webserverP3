@@ -27,9 +27,10 @@ const forecast = (latitude, longitude, callback) => {
         }else if(body.error) {//search error.
             callback(body.error, undefined);
         }else {//got some response.
+            console.log(body);
             const temp = body.currently.temperature;
             const precipProbability = body.currently.precipProbability;
-            callback(undefined,{temp, precipProbability});
+            callback(undefined,body.daily.data[0].summary + ' It is currently ' + body.currently.temperature + ' degress out. There is a ' + body.currently.precipProbability + '% chance of rain.');
         }
     }
   );
