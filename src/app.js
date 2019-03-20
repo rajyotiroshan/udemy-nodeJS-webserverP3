@@ -77,22 +77,27 @@ app.get('/weather',(req,res)=>{///weather
     }
     
     //request for forecast data.
-    geocode(req.query.address, (error,response)=>{
+    geocode(req.query.address, (error,{latitude, longitude, location})=>{
         if(error){
-            res.send({
+            return res.send({
                 error
             });
-        }else {
-            forecast(response.latitude, response.longitude,(error,response)=>{
-                if(error){
-                    res.send({
-                        error
-                    });
-                }else {
-                    res.send({response});
-                }
+        } 
+        forecast(latitude,longitude,(error,forecastData)=>{
+            if(error){
+               return res.send({
+                    error
+                });
+            }
+            
+            res.send({
+                forecast: forecastData,
+                location,
+                address: req.query.address
             });
-        }
+            
+        });
+        
     });
 });
 
