@@ -27,10 +27,11 @@ const forecast = (latitude, longitude, callback) => {
         }else if(body.error) {//search error.
             callback(body.error, undefined);
         }else {//got some response.
-            console.log(body);
+            const minTemp = body.daily.data[0].temperatureMin;
+            const maxTemp = body.daily.data[0].temperatureMax;
             const temp = body.currently.temperature;
             const precipProbability = body.currently.precipProbability;
-            callback(undefined,body.daily.data[0].summary + ' It is currently ' + body.currently.temperature + ' degress out. There is a ' + body.currently.precipProbability + '% chance of rain.');
+            callback(undefined,body.daily.data[0].summary + ' It is currently ' + temp + ' degress out. There is a ' + precipProbability + '% chance of rain.'+ "Today's maximum temprature is " +maxTemp + " And minimum temprature is " + minTemp);
         }
     }
   );
